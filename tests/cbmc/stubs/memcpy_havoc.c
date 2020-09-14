@@ -19,10 +19,10 @@
  #include <stdint.h>
 
  /**
-  * Override the version of memcpy used by CBMC. Users may not want to pay
-  * for the cost of performing the computation of memcpy in proofs. In that
-  * case, this stub at least checks for the preconditions and make sure to
-  * havoc all elements pointed by *dst up to n.
+  * Overrides the version of memcpy used by CBMC. Users may not want to pay
+  * for the cost of performing the computation of memcpy in proofs.
+  * In that case, this stub at least checks for the preconditions and makes
+  * sure to non-deterministically havoc an element pointed by *dst up to n.
   */
  void *memcpy_impl(void *dst, const void *src, size_t n) {
      __CPROVER_precondition(
