@@ -39,7 +39,7 @@ bool s2n_stuffer_reservation_is_valid(const struct s2n_stuffer_reservation* rese
 {
     return S2N_OBJECT_PTR_IS_READABLE(reservation) &&
            s2n_stuffer_is_valid(reservation->stuffer) &&
-           ((reservation->length == 0) || (reservation->stuffer->blob.data != NULL));
+           S2N_MEM_IS_WRITABLE(reservation->stuffer->blob.data + reservation->write_cursor, reservation->length);
 }
 
 int s2n_stuffer_init(struct s2n_stuffer *stuffer, struct s2n_blob *in)
